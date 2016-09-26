@@ -1,7 +1,7 @@
 "use strict";
 
 const { assert } = require("chai");
-const splitter = require("../lib/splitter.js");
+const splitter = require("../server/lib/splitter.js");
 
 describe("Splitter to split on spaces", () => {
   it("should be a function", () => {
