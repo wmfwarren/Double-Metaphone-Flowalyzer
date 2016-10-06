@@ -1,5 +1,6 @@
 "use strict";
 
 module.exports = (stringToClean) => {
-  return  stringToClean.replace(/[.,\/#!$%\^&\*;\'\":{}=\-_`~()]/g, "");
+  stringToClean = stringToClean.replace(/[.,\/#!$%\^&\*;\'\":{}=\_`~()]/g, "");
+  return stringToClean.replace(/-/g, ' ');
 }
