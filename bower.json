@@ -1,0 +1,17 @@
+{
+  "name": "doublemetaphoneflowalyzer",
+  "description": "",
+  "main": "server/server.js",
+  "authors": [
+    "Marshall Friskics-Warren"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/wmfwarren/Double-Metaphone-Flowalyzer",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
