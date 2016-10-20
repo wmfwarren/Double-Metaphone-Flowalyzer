@@ -1,7 +1,7 @@
 "use strict";
 
 const { assert } = require("chai");
-const wordify = require("../server/lib/wordifyNumbers.js");
+const wordify = require("../lib/wordifyNumbers.js");
 
 describe("Splitter to split on spaces", () => {
   it("should be a function", () => {
