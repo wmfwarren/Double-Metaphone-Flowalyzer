@@ -1,7 +1,7 @@
 "use strict";
 
 const { assert } = require("chai");
-const cleaner = require("../server/lib/punctuationCleaner.js");
+const cleaner = require("../lib/punctuationCleaner.js");
 
 describe("Splitter to split on spaces", () => {
   it("should be a function", () => {
