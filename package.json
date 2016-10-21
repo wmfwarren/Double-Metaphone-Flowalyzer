@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "coverage": "istanbul cover _mocha"
+    "coverage": "istanbul cover _mocha",
+    "postinstall": "bower install"
   },
   "author": "Marshall Friskics-Warren",
   "license": "MIT",
