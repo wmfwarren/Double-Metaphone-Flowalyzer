@@ -19,6 +19,7 @@
     "double-metaphone": "^0.1.4",
     "express": "^4.14.0",
     "express-session": "^1.14.1",
+    "hapi": "^15.1.1",
     "knex": "^0.12.6",
     "number-to-words": "^1.2.3",
     "pg": "^6.1.0"
