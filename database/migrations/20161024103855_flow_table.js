@@ -1,5 +1,7 @@
 "use strict";
 
+//join table
+
 module.exports.up = (knex, Promise) => {
   return knex.schema.createTable('Flow', (table) => {
         table.increments("id"); //for the primary key UID 
