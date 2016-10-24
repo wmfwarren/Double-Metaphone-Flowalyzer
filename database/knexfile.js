@@ -3,12 +3,15 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'postgresql',
     connection: {
-      filename: './flowalyzer.sqlite3'
+      database: 'flowalyzer',
+      user:     'WMFWarren',
+      password: 'a1234A'
     },
     pool: {
-      afterCreate: (db, cb) => db.run('PRAGMA foreign_keys = ON', cb)
+      min: 2,
+      max: 10
     }
   },
 
