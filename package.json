@@ -8,16 +8,19 @@
   },
   "scripts": {
     "test": "mocha",
-    "coverage": "istanbul cover _mocha"
+    "coverage": "istanbul cover _mocha",
+    "postinstall": "bower install"
   },
   "author": "Marshall Friskics-Warren",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "double-metaphone": "^0.1.4",
+    "bookshelf": "^0.10.2",
     "express": "^4.14.0",
-    "express-session": "^1.14.1",
-    "number-to-words": "^1.2.3"
+    "knex": "^0.12.6",
+    "number-to-words": "^1.2.3",
+    "pg": "^6.1.0",
+    "sqlite3": "^3.1.6"
   },
   "devDependencies": {
     "bower": "^1.7.9",
