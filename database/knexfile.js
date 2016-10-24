@@ -5,7 +5,10 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './dev.sqlite3'
+      filename: './flowalyzer.sqlite3'
+    },
+    pool: {
+      afterCreate: (db, cb) => db.run('PRAGMA foreign_keys = ON', cb)
     }
   },
 

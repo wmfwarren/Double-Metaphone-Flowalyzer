@@ -18,7 +18,8 @@
     "hapi": "^15.1.1",
     "knex": "^0.12.6",
     "number-to-words": "^1.2.3",
-    "pg": "^6.1.0"
+    "pg": "^6.1.0",
+    "sqlite3": "^3.1.6"
   },
   "devDependencies": {
     "bower": "^1.7.9",
