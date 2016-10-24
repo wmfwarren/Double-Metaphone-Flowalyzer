@@ -14,8 +14,9 @@
   "author": "Marshall Friskics-Warren",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "bookshelf": "^0.10.2",
-    "hapi": "^15.1.1",
+    "express": "^4.14.0",
     "knex": "^0.12.6",
     "number-to-words": "^1.2.3",
     "pg": "^6.1.0",
