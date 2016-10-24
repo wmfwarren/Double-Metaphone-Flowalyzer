@@ -14,8 +14,14 @@ app.use(bodyParser.json())
 
 app.set("port", port)
 
-
+app.post("/api/newFlow", (req, res) => {
+	knex("Raw")
+		.insert(req.body)
+		.then((data) => {
+			res.json(data);
+		})
+});
 
 app.listen(port, () => {
 	console.log(`Listening on port ${port}`);
-})
+});
