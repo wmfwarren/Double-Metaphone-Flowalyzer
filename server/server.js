@@ -3,6 +3,8 @@
 const config = require("../database/knexfile.js").development;
 const knex = require("knex")(config);
 
+const { getArtistId, getAlbumId } = require("./getFKeys.js");
+
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -15,6 +17,8 @@ app.use(express.static("client"));
 app.use(bodyParser.json());
 
 app.set("port", port);
+
+//ROUTES
 
 app.post("/api/newArtist", (req, res) => {
 
@@ -30,22 +34,37 @@ app.post("/api/newArtist", (req, res) => {
 app.post("/api/newAlbum", (req, res) => {
 	
 	const album = {title: req.body.album};
+	const artist = req.body.artist;
 
-	knex("Album")
-		.insert({title: album.title})
+	getArtistId(artist)
 		.then((data) => {
-			res.json(data);
+			return data[0].id; //data[0].id is artist table PK
 		})
+		.then((data) => {
+			knex("Album")
+				.insert({title: album.title, artist_id: data})
+				.then((data) => {
+					res.json(data);
+				})
+		});
 });
 
 app.post("/api/newTrack", (req, res) => {
 	const track = {title: req.body.track};
+	const album = req.body.album;
 
-	knex("Track")
-		.insert({title: track.title})
-		.then((data) => {
-			res.json(data);
-		})
+	getAlbumId(album)
+	.then((data) => {
+		console.log("track data", data );
+		return data[0].id; //this is the album id
+	})
+	.then((data) => {
+		knex("Track")
+			.insert({title: track.title, album_id: data})
+			.then((data) => {
+				res.json(data);
+			})
+	});
 });
 
 app.post("/api/newFlow", (req, res) => {
