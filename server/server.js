@@ -1,5 +1,7 @@
 "use strict";
 
+//MODULES
+//DB
 const config = require("../database/knexfile.js").development;
 const knex = require("knex")(config);
 
@@ -10,16 +12,20 @@ const bodyParser = require("body-parser");
 
 const encoderDMP = require("../lib/analysis/DMPencoder.js");
 
+// CONSTANT
 const port = process.env.PORT || 3000;
+
+//INVOCATIONS
 const app = express();
 
+//MIDDLEWARE
 app.use(express.static("client"));
 app.use(bodyParser.json());
 
 app.set("port", port);
 
 //ROUTES
-
+////Post new artist
 app.post("/api/newArtist", (req, res) => {
 
 	const artist = req.body.artist;
@@ -30,7 +36,7 @@ app.post("/api/newArtist", (req, res) => {
 			res.json(data);
 		})
 });
-
+////psot new album
 app.post("/api/newAlbum", (req, res) => {
 	
 	const album = {title: req.body.album};
@@ -48,7 +54,7 @@ app.post("/api/newAlbum", (req, res) => {
 				})
 		});
 });
-
+////post new track
 app.post("/api/newTrack", (req, res) => {
 	const track = {title: req.body.track};
 	const album = req.body.album;
@@ -66,7 +72,7 @@ app.post("/api/newTrack", (req, res) => {
 			})
 	});
 });
-
+///// post new flow
 app.post("/api/newFlow", (req, res) => {
 	const flow = req.body.flow;
 
@@ -86,6 +92,8 @@ app.post("/api/newFlow", (req, res) => {
 		
 });
 
+
+//LISTENING on port...
 app.listen(port, () => {
 	console.log(`Listening on port ${port}`);
 });
