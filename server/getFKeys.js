@@ -32,4 +32,18 @@ const getAlbumId = (albumName) => {
 	})
 };
 
-module.exports = {getArtistId, getAlbumId};
+const getTrackId = (trackName) => {
+
+	return new Promise ((resolve, reject) => {
+
+		knex("Track").where("title", trackName).select("id").then((data) => {
+			if (data) {
+				resolve(data);
+			} else {
+				reject();
+			}
+		});
+	})
+};
+
+module.exports = {getArtistId, getAlbumId, getTrackId};

@@ -5,7 +5,7 @@
 const config = require("../database/knexfile.js").development;
 const knex = require("knex")(config);
 
-const { getArtistId, getAlbumId } = require("./getFKeys.js");
+const { getArtistId, getAlbumId, getTrackId } = require("./getFKeys.js");
 
 const express = require("express");
 const bodyParser = require("body-parser");
