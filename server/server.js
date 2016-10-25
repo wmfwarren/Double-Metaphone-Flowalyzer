@@ -16,38 +16,47 @@ app.use(bodyParser.json());
 
 app.set("port", port);
 
-app.post("/api/newFlow", (req, res) => {
-	const flow = req.body.flow;
-	const artist = req.body.artist;
-	const album = {title: req.body.album};
-	const track = {title: req.body.track};
+app.post("/api/newArtist", (req, res) => {
 
-	//insert artist name into artist table
+	const artist = req.body.artist;
+
 	knex("Artist")
 		.insert({name: artist})
 		.then((data) => {
 			res.json(data);
 		})
-	//insert album info
+});
+
+app.post("/api/newAlbum", (req, res) => {
+	
+	const album = {title: req.body.album};
+
 	knex("Album")
 		.insert({title: album.title})
 		.then((data) => {
 			res.json(data);
 		})
-	//insert album info
+});
+
+app.post("/api/newTrack", (req, res) => {
+	const track = {title: req.body.track};
+
 	knex("Track")
 		.insert({title: track.title})
 		.then((data) => {
 			res.json(data);
 		})
+});
+
+app.post("/api/newFlow", (req, res) => {
+	const flow = req.body.flow;
+
 	//insert raw flow into flow table
 	knex("Raw")
 		.insert(req.body)
 		.then((data) => {
 			res.json(data);
 		})
-
-	// const encodedObj = {flow:	encoderDMP(flow)};
 
 	//insert DMP flow into DMP table
 	knex("DMP")
