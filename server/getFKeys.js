@@ -46,4 +46,19 @@ const getTrackId = (trackName) => {
 	})
 };
 
-module.exports = {getArtistId, getAlbumId, getTrackId};
+const getFlowId = (flow) => {
+
+	return new Promise ((resolve, reject) => {
+
+		knex("Raw").where("flow", flow).select("id").then((data) => {
+			if (data) {
+				resolve(data);
+			} else {
+				reject();
+			}
+		});
+	})
+};
+
+
+module.exports = {getArtistId, getAlbumId, getTrackId, getFlowId};

@@ -5,7 +5,7 @@
 const config = require("../database/knexfile.js").development;
 const knex = require("knex")(config);
 
-const { getArtistId, getAlbumId, getTrackId } = require("./getFKeys.js");
+const { getArtistId, getAlbumId, getTrackId, getFlowId } = require("./getFKeys.js");
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -75,10 +75,11 @@ app.post("/api/newTrack", (req, res) => {
 ///// post new flow
 app.post("/api/newFlow", (req, res) => {
 	const flow = req.body.flow;
+	const length = flow.split(' ').length;
 
 	//insert raw flow into flow table
 	knex("Raw")
-		.insert(req.body)
+		.insert({flow: flow, length: length})
 		.then((data) => {
 			res.json(data);
 		})
