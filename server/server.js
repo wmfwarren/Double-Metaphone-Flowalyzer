@@ -36,7 +36,7 @@ app.post("/api/newArtist", (req, res) => {
 			res.json(data);
 		})
 });
-////psot new album
+////post new album
 app.post("/api/newAlbum", (req, res) => {
 	
 	const album = {title: req.body.album};
