@@ -61,7 +61,6 @@ app.post("/api/newTrack", (req, res) => {
 
 	getAlbumId(album)
 	.then((data) => {
-		console.log("track data", data );
 		return data[0].id; //this is the album id
 	})
 	.then((data) => {
@@ -77,6 +76,9 @@ app.post("/api/newFlow", (req, res) => {
 	const flow = req.body.flow;
 	const length = flow.split(' ').length;
 
+	const rapper = req.body.rapper;
+	const track = req.body.track;
+
 	//insert raw flow into flow table
 	knex("Raw")
 		.insert({flow: flow, length: length})
@@ -88,9 +90,29 @@ app.post("/api/newFlow", (req, res) => {
 	knex("DMP")
 		.insert({flow:	encoderDMP(flow)})
 		.then((data) => {
-			res.json(data);
+			Promise.all([getFlowId(flow), getArtistId(rapper), getTrackId(track)])
+				.then((IDs) => {
+					console.log("Promise All Return", IDs);
+					return {
+						flowId: IDs[0][0].id,
+						rapperId: IDs[1][0].id,
+						trackId: IDs[2][0].id
+					};
+				})
+				.then((data) => {
+					knex("Flow")
+						.insert({	rapper_id: data.rapperId,
+											track_id: data.trackId,
+											raw_flow_id: data.flowId,
+											dmp_flow_id: data.flowId
+						})
+						.then((data) => {
+							console.log("data", data);
+						})
+				});
 		})
-		
+
+	//create join table entry
 });
 
 
