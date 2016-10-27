@@ -90,6 +90,7 @@ app.post("/api/newFlow", (req, res) => {
 	knex("DMP")
 		.insert({flow:	encoderDMP(flow)})
 		.then((data) => {
+			//this gets all the IDs for the join tab;e after inserting the DMP flow
 			Promise.all([getFlowId(flow), getArtistId(rapper), getTrackId(track)])
 				.then((IDs) => {
 					console.log("Promise All Return", IDs);
@@ -99,6 +100,7 @@ app.post("/api/newFlow", (req, res) => {
 						trackId: IDs[2][0].id
 					};
 				})
+				//create the join "Flow" table here
 				.then((data) => {
 					knex("Flow")
 						.insert({	rapper_id: data.rapperId,
