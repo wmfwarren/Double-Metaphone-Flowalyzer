@@ -81,7 +81,7 @@ app.post("/api/newFlow", (req, res) => {
 
 	//insert raw flow into flow table
 	knex("Raw")
-		.insert({flow: flow, length: length})
+		.insert({flow: flow, length: length, unique_words: require("../lib/analysis/uniqueWords.js")(flow)})
 		.then((data) => {
 			res.json(data);
 		})
