@@ -124,7 +124,7 @@ app.get("/api/averageFlowLengths", (req, res) => {
 			let averageFlowLengthArray = [];
 			let promiseArray = [];
 			let rows = data[0].count;
-			//run a sql query for average uniqueness on each artist
+			//Create an array of promises, 1 for each rapper
 			for(let i = 1; i <= rows; i++) {
 				promiseArray.push( knex("Raw")
 					.avg("length as l")
@@ -140,10 +140,47 @@ app.get("/api/averageFlowLengths", (req, res) => {
 			}
 			return promiseArray;
 		})
+		//return out the array of promises
 		.then((promises) => {
-			Promise.all(promises)
+			Promise.all(promises) //promise all the array
 				.then((results) => {
-					console.log("uniqueness results", results);
+					return results;
+				})
+				.then((uniquenessArray) => {
+					let length = uniquenessArray.length
+					const promiseArray = [];
+
+					for(let i = 1; i <= length; i ++){
+						promiseArray.push(
+							knex("Artist")
+								.where("id", i)
+								.select("name")
+								.then((name) => {
+									return name;
+								})
+							)
+					}
+					return {promiseArray, uniquenessArray};
+				})
+				.then((data) => {
+					Promise.all(data.promiseArray)
+						.then((nameData) => {
+							console.log("all", nameData );
+							console.log("uniqueness", data.uniquenessArray );
+							return {nameData, uniqueness: data.uniquenessArray};
+						})
+						.then((arrays) => {
+							const rapperUniquenessArray = [];
+
+							for(let i = 0; i < arrays.nameData.length; i++){
+								let obj = {};
+								obj.rapper = arrays.nameData[i][0].name;
+								obj.uniqueness = arrays.uniqueness[i];
+								rapperUniquenessArray.push(obj);
+							}
+
+							res.json(rapperUniquenessArray);
+						})
 				})
 		});
 });
