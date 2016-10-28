@@ -119,11 +119,11 @@ app.get("/api/averageFlowLengths", (req, res) => {
 
 	//this knex sql query gets the number of artist
 	knex("Artist")
-		.count("id")
+		.max("id")
 		.then((data) => {
 			let averageFlowLengthArray = [];
 			let promiseArray = [];
-			let rows = data[0].count;
+			let rows = data[0].max;
 			//Create an array of promises, 1 for each rapper
 			for(let i = 1; i <= rows; i++) {
 				promiseArray.push( knex("Raw")
@@ -149,7 +149,8 @@ app.get("/api/averageFlowLengths", (req, res) => {
 				.then((uniquenessArray) => {
 					let length = uniquenessArray.length
 					const promiseArray = [];
-
+					//make an array of promises to get the artists names back
+					//they always come back in the same order as the uniquenesses
 					for(let i = 1; i <= length; i ++){
 						promiseArray.push(
 							knex("Artist")
@@ -165,8 +166,6 @@ app.get("/api/averageFlowLengths", (req, res) => {
 				.then((data) => {
 					Promise.all(data.promiseArray)
 						.then((nameData) => {
-							console.log("all", nameData );
-							console.log("uniqueness", data.uniquenessArray );
 							return {nameData, uniqueness: data.uniquenessArray};
 						})
 						.then((arrays) => {
@@ -174,11 +173,15 @@ app.get("/api/averageFlowLengths", (req, res) => {
 
 							for(let i = 0; i < arrays.nameData.length; i++){
 								let obj = {};
-								obj.rapper = arrays.nameData[i][0].name;
-								obj.uniqueness = arrays.uniqueness[i];
-								rapperUniquenessArray.push(obj);
-							}
 
+								obj.uniqueness = arrays.uniqueness[i];
+
+								if(!isNaN(obj.uniqueness)){
+									obj.rapper = arrays.nameData[i][0].name;
+									rapperUniquenessArray.push(obj);
+								}
+							}
+							console.log("rapperUniquenessArray", rapperUniquenessArray );
 							res.json(rapperUniquenessArray);
 						})
 				})
