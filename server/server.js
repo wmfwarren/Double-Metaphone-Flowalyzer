@@ -183,8 +183,8 @@ app.get("/api/averageLengths", (req, res) => {
 							console.log("rapperLengthsArray", rapperLengthsArray );
 							res.json(rapperLengthsArray);
 						});
-				})
-		})
+				});
+		});
 });
 
 app.get("/api/averageUniqueness", (req, res) => {
