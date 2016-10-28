@@ -110,13 +110,12 @@ app.post("/api/newFlow", (req, res) => {
 						})
 						.then((data) => {
 							console.log("data", data);
-						})
+						});
 				});
-		})
-
-	//create join table entry
+		});
 });
 
+//GET Methods
 
 //LISTENING on port...
 app.listen(port, () => {
