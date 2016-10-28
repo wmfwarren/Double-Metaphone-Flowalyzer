@@ -114,6 +114,78 @@ app.post("/api/newFlow", (req, res) => {
 				});
 		});
 });
+//GETs
+
+app.get("/api/averageLengths", (req, res) => {
+		//this knex sql query gets the number of artist
+	knex("Artist")
+		.max("id")
+		.then((data) => {
+			let promiseArray = [];
+			let rows = data[0].max;
+			//Create an array of promises, 1 for each rapper
+			for(let i = 1; i <= rows; i++) {
+				promiseArray.push( knex("Raw")
+					.avg("length")
+					.innerJoin("Flow", "Raw.id", "Flow.raw_flow_id")
+					.where("rapper_id", i)
+					.then((data) => {
+						let length = data[0].avg;
+
+						return Math.round(length);
+					})
+				)
+			}
+			return promiseArray;
+		})
+		.then((promises) => {
+			Promise.all(promises)
+				.then((results) => {
+					return results;
+				})
+				.then((lengthsArray) => {
+					let length = lengthsArray.length
+					const promiseArray = [];
+					//make an array of promises to get the artists names back
+					//they always come back in the same order as the uniquenesses
+					for(let i = 1; i <= length; i ++){
+						promiseArray.push(
+							knex("Artist")
+								.where("id", i)
+								.select("name")
+								.then((name) => {
+									return name;
+								})
+							)
+					}
+					console.log("lengthsArray", lengthsArray );
+					return {promiseArray, lengthsArray};
+				})
+				.then((data) => {
+					Promise.all(data.promiseArray)
+						.then((nameData) => {
+							return {nameData, lengths: data.lengthsArray};
+						})
+						.then((arrays) => {
+							console.log("arrays", arrays );
+							const rapperLengthsArray = [];
+
+							for(let i = 0; i < arrays.nameData.length; i++){
+								let obj = {};
+
+								obj.lengths = arrays.lengths[i];
+
+								if( obj.lengths !== 0){
+									obj.rapper = arrays.nameData[i][0].name;
+									rapperLengthsArray.push(obj);
+								}
+							}
+							console.log("rapperLengthsArray", rapperLengthsArray );
+							res.json(rapperLengthsArray);
+						});
+				})
+		})
+});
 
 app.get("/api/averageUniqueness", (req, res) => {
 
@@ -181,10 +253,9 @@ app.get("/api/averageUniqueness", (req, res) => {
 									rapperUniquenessArray.push(obj);
 								}
 							}
-							console.log("rapperUniquenessArray", rapperUniquenessArray );
 							res.json(rapperUniquenessArray);
-						})
-				})
+						});
+				});
 		});
 });
 
