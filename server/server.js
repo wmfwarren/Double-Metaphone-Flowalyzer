@@ -122,10 +122,11 @@ app.get("/api/averageFlowLengths", (req, res) => {
 		.count("id")
 		.then((data) => {
 			let averageFlowLengthArray = [];
+			let promiseArray = [];
 			let rows = data[0].count;
 			//run a sql query for average uniqueness on each artist
 			for(let i = 1; i <= rows; i++) {
-				knex("Raw")
+				promiseArray.push( knex("Raw")
 					.avg("length as l")
 					.avg("unique_words as u")
 					.innerJoin("Flow", "Raw.id", "Flow.raw_flow_id")
@@ -135,18 +136,17 @@ app.get("/api/averageFlowLengths", (req, res) => {
 
 						return ((returnObj.u / returnObj.l) * 100).toFixed(2);
 					})
-					.then((data) => {
-						console.log("Pushing", data );
-						averageFlowLengthArray.push({rapper_id: i, uniqueness: data});
-					});
+				)
 			}
-			return averageFlowLengthArray;
+			return promiseArray;
 		})
-		.then((data) => {
-			console.log("averageFlowLengthArray", data );
+		.then((promises) => {
+			Promise.all(promises)
+				.then((results) => {
+					console.log("uniqueness results", results);
+				})
 		});
 });
-
 
 //LISTENING on port...
 app.listen(port, () => {
