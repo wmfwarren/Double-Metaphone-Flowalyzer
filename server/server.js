@@ -90,6 +90,7 @@ app.post("/api/newFlow", (req, res) => {
 	knex("DMP")
 		.insert({flow:	encoderDMP(flow)})
 		.then((data) => {
+			//this gets all the IDs for the join tab;e after inserting the DMP flow
 			Promise.all([getFlowId(flow), getArtistId(rapper), getTrackId(track)])
 				.then((IDs) => {
 					console.log("Promise All Return", IDs);
@@ -99,6 +100,7 @@ app.post("/api/newFlow", (req, res) => {
 						trackId: IDs[2][0].id
 					};
 				})
+				//create the join "Flow" table here
 				.then((data) => {
 					knex("Flow")
 						.insert({	rapper_id: data.rapperId,
@@ -108,13 +110,154 @@ app.post("/api/newFlow", (req, res) => {
 						})
 						.then((data) => {
 							console.log("data", data);
-						})
+						});
 				});
-		})
+		});
+});
+//GETs
 
-	//create join table entry
+app.get("/api/averageLengths", (req, res) => {
+		//this knex sql query gets the number of artist
+	knex("Artist")
+		.max("id")
+		.then((data) => {
+			let promiseArray = [];
+			let rows = data[0].max;
+			//Create an array of promises, 1 for each rapper
+			for(let i = 1; i <= rows; i++) {
+				promiseArray.push( knex("Raw")
+					.avg("length")
+					.innerJoin("Flow", "Raw.id", "Flow.raw_flow_id")
+					.where("rapper_id", i)
+					.then((data) => {
+						let length = data[0].avg;
+
+						return Math.round(length);
+					})
+				)
+			}
+			return promiseArray;
+		})
+		.then((promises) => {
+			Promise.all(promises)
+				.then((results) => {
+					return results;
+				})
+				.then((lengthsArray) => {
+					let length = lengthsArray.length
+					const promiseArray = [];
+					//make an array of promises to get the artists names back
+					//they always come back in the same order as the uniquenesses
+					for(let i = 1; i <= length; i ++){
+						promiseArray.push(
+							knex("Artist")
+								.where("id", i)
+								.select("name")
+								.then((name) => {
+									return name;
+								})
+							)
+					}
+					console.log("lengthsArray", lengthsArray );
+					return {promiseArray, lengthsArray};
+				})
+				.then((data) => {
+					Promise.all(data.promiseArray)
+						.then((nameData) => {
+							return {nameData, lengths: data.lengthsArray};
+						})
+						.then((arrays) => {
+							console.log("arrays", arrays );
+							const rapperLengthsArray = [];
+
+							for(let i = 0; i < arrays.nameData.length; i++){
+								let obj = {};
+
+								obj.lengths = arrays.lengths[i];
+
+								if( obj.lengths !== 0){
+									obj.rapper = arrays.nameData[i][0].name;
+									rapperLengthsArray.push(obj);
+								}
+							}
+							console.log("rapperLengthsArray", rapperLengthsArray );
+							res.json(rapperLengthsArray);
+						});
+				});
+		});
 });
 
+app.get("/api/averageUniqueness", (req, res) => {
+
+	//this knex sql query gets the number of artist
+	knex("Artist")
+		.max("id")
+		.then((data) => {
+			let averageFlowLengthArray = [];
+			let promiseArray = [];
+			let rows = data[0].max;
+			//Create an array of promises, 1 for each rapper
+			for(let i = 1; i <= rows; i++) {
+				promiseArray.push( knex("Raw")
+					.avg("length as l")
+					.avg("unique_words as u")
+					.innerJoin("Flow", "Raw.id", "Flow.raw_flow_id")
+					.where("rapper_id", i)
+					.then((data) => {
+						let returnObj = data[0];
+
+						return ((returnObj.u / returnObj.l) * 100).toFixed(2);
+					})
+				)
+			}
+			return promiseArray;
+		})
+		//return out the array of promises
+		.then((promises) => {
+			Promise.all(promises) //promise all the array
+				.then((results) => {
+					return results;
+				})
+				.then((uniquenessArray) => {
+					let length = uniquenessArray.length
+					const promiseArray = [];
+					//make an array of promises to get the artists names back
+					//they always come back in the same order as the uniquenesses
+					for(let i = 1; i <= length; i ++){
+						promiseArray.push(
+							knex("Artist")
+								.where("id", i)
+								.select("name")
+								.then((name) => {
+									return name;
+								})
+							)
+					}
+					return {promiseArray, uniquenessArray};
+				})
+				.then((data) => {
+					Promise.all(data.promiseArray)
+						.then((nameData) => {
+							return {nameData, uniqueness: data.uniquenessArray};
+						})
+						.then((arrays) => {
+							const rapperUniquenessArray = [];
+
+							for(let i = 0; i < arrays.nameData.length; i++){
+								let obj = {};
+
+								obj.uniqueness = arrays.uniqueness[i];
+
+								if(!isNaN(obj.uniqueness)){
+									obj.rapper = arrays.nameData[i][0].name;
+									rapperUniquenessArray.push(obj);
+								}
+							}
+							res.json(rapperUniquenessArray);
+						});
+				});
+		});
+});
 
 //LISTENING on port...
 app.listen(port, () => {
