@@ -115,7 +115,7 @@ app.post("/api/newFlow", (req, res) => {
 		});
 });
 
-app.get("/api/averageFlowLengths", (req, res) => {
+app.get("/api/averageUniqueness", (req, res) => {
 
 	//this knex sql query gets the number of artist
 	knex("Artist")
