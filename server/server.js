@@ -129,6 +129,23 @@ app.post("/api/searchArtistFlows", (req, res) => {
 			res.json(data);
 		});
 });
+
+app.post("/api/searchTrackFlows", (req, res) => {
+	const trackName = req.body.track;
+
+	knex("Track")
+		.select("Track.title")
+		.select("Raw.flow as raw", "DMP.flow as dmp")
+		.select("Raw.length as l", "Raw.unique_words as u")
+		.innerJoin("Flow", "Track.id", "Flow.track_id")
+		.innerJoin("Raw", "Flow.raw_flow_id", "Raw.id")
+		.innerJoin("DMP", "Raw.id", "DMP.id")
+		.where("Track.title", trackName)
+		.then((data) => {
+			res.json(data);
+		});
+});
+
 //GETs
 
 app.get("/api/averageLengths", (req, res) => {
