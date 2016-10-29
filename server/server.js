@@ -143,7 +143,6 @@ app.post("/api/searchTrackFlows", (req, res) => {
 		.where("Track.title", trackName)
 		.then((data) => {
 			data[0].uniqueness = ((data[0].u / data[0].l) * 100).toFixed(2);
-			console.log("uniqueness", data );
 			res.json(data);
 		});
 });
