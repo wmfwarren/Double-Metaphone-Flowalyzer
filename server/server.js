@@ -140,7 +140,7 @@ app.post("/api/searchTrackFlows", (req, res) => {
 		.innerJoin("DMP", "Raw.id", "DMP.id")
 		.where("Track.title", trackName)
 		.then((data) => {
-			data[0].uniqueness = ((data[0].u / data[0].l) * 100).toFixed(2);
+			data[0].uniqueness = parseFloat(((data[0].u / data[0].l) * 100).toFixed(2));
 			res.json(data);
 		});
 });
@@ -234,7 +234,7 @@ app.get("/api/averageUniqueness", (req, res) => {
 					.then((data) => {
 						let returnObj = data[0];
 
-						return ((returnObj.u / returnObj.l) * 100).toFixed(2);
+						return parseFloat(((returnObj.u / returnObj.l) * 100).toFixed(2));
 					})
 				)
 			}
