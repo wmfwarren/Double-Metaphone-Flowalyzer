@@ -84,7 +84,7 @@ app.post("/api/newFlow", (req, res) => {
 		.insert({flow: flow, length: length, unique_words: require("../lib/analysis/uniqueWords.js")(flow)})
 		.then((data) => {
 			res.json(data);
-		})
+		});
 
 	//insert DMP flow into DMP table
 	knex("DMP")
@@ -114,10 +114,25 @@ app.post("/api/newFlow", (req, res) => {
 				});
 		});
 });
+
+app.post("/api/searchArtistFlows", (req, res) => {
+	const artistName = req.body.artist;
+
+	knex("Artist")
+		.select("Artist.id", "Artist.name")
+		.select("Raw.flow as raw", "DMP.flow as dmp")
+		.innerJoin("Flow", "Artist.id", "Flow.rapper_id")
+		.innerJoin("Raw", "Flow.raw_flow_id", "Raw.id")
+		.innerJoin("DMP", "Raw.id", "DMP.id")
+		.where("Artist.name", artistName)
+		.then((data) => {
+			res.json(data);
+		});
+});
 //GETs
 
 app.get("/api/averageLengths", (req, res) => {
-		//this knex sql query gets the number of artist
+		//this knex sql query gets the number of artists
 	knex("Artist")
 		.max("id")
 		.then((data) => {
