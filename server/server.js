@@ -93,7 +93,6 @@ app.post("/api/newFlow", (req, res) => {
 			//this gets all the IDs for the join tab;e after inserting the DMP flow
 			Promise.all([getFlowId(flow), getArtistId(rapper), getTrackId(track)])
 				.then((IDs) => {
-					console.log("Promise All Return", IDs);
 					return {
 						flowId: IDs[0][0].id,
 						rapperId: IDs[1][0].id,
@@ -109,7 +108,6 @@ app.post("/api/newFlow", (req, res) => {
 											dmp_flow_id: data.flowId
 						})
 						.then((data) => {
-							console.log("data", data);
 						});
 				});
 		});
@@ -191,7 +189,6 @@ app.get("/api/averageLengths", (req, res) => {
 								})
 							)
 					}
-					console.log("lengthsArray", lengthsArray );
 					return {promiseArray, lengthsArray};
 				})
 				.then((data) => {
@@ -200,7 +197,6 @@ app.get("/api/averageLengths", (req, res) => {
 							return {nameData, lengths: data.lengthsArray};
 						})
 						.then((arrays) => {
-							console.log("arrays", arrays );
 							const rapperLengthsArray = [];
 
 							for(let i = 0; i < arrays.nameData.length; i++){
@@ -213,7 +209,6 @@ app.get("/api/averageLengths", (req, res) => {
 									rapperLengthsArray.push(obj);
 								}
 							}
-							console.log("rapperLengthsArray", rapperLengthsArray );
 							res.json(rapperLengthsArray);
 						});
 				});
