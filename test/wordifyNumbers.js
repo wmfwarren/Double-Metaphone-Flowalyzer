@@ -12,7 +12,7 @@ describe("Splitter to split on spaces", () => {
     assert.equal(wordify(1), expected);
   });
   it("should return 'twenty-one' from 21", () => {
-    let expected = "twenty-one";
+    let expected = "twenty one";
     assert.equal(wordify(21), expected);
   });
   it("should return 'nineteen ninety five' from 1", () => {
