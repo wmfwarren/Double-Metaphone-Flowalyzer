@@ -115,7 +115,7 @@ app.post("/api/newFlow", (req, res) => {
 });
 
 app.post("/api/searchArtistFlows", (req, res) => {
-	const artistName = req.body.artist;
+	const artistName = req.body.searchTerm;
 
 	knex("Artist")
 		.select("Artist.id", "Artist.name")
@@ -130,7 +130,7 @@ app.post("/api/searchArtistFlows", (req, res) => {
 });
 
 app.post("/api/searchTrackFlows", (req, res) => {
-	const trackName = req.body.track;
+	const trackName = req.body.searchTerm;
 
 	knex("Track")
 		.select("Track.title")
