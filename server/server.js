@@ -5,12 +5,13 @@
 const config = require("../database/knexfile.js").development;
 const knex = require("knex")(config);
 
-const { getArtistId, getAlbumId, getTrackId, getFlowId } = require("./getFKeys.js");
-
+//Third party packages
 const express = require("express");
 const bodyParser = require("body-parser");
 
+//My packages
 const encoderDMP = require("../lib/analysis/DMPencoder.js");
+const { getArtistId, getAlbumId, getTrackId, getFlowId } = require("./getFKeys.js");
 
 // CONSTANT
 const port = process.env.PORT || 3000;
