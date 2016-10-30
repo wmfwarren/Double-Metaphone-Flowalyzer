@@ -14,7 +14,7 @@ The goal of this project is to use the Double Metaphone Algorithm to analyze the
 
 ## Technologies Used
 + NodeJS
-+ Hapi
++ Express
 + PostgreSQL
 + Angular 1.X
 
