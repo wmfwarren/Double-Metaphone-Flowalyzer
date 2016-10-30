@@ -140,7 +140,9 @@ app.post("/api/searchTrackFlows", (req, res) => {
 		.innerJoin("DMP", "Raw.id", "DMP.id")
 		.where("Track.title", trackName)
 		.then((data) => {
-			data[0].uniqueness = parseFloat(((data[0].u / data[0].l) * 100).toFixed(2));
+			for(let i = 0; i < data.length; i++) {
+				data[i].uniqueness = parseFloat(((data[i].u / data[i].l) * 100).toFixed(2));
+			}
 			res.json(data);
 		});
 });
