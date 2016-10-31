@@ -1,5 +1,9 @@
 "use strict";
 
-app.controller("SearchResultsCtrl", ["$scope", "$http", function($scope, $http, searchDataFactory) {
+app.controller("SongResultsCtrl", ["$scope", "$http", "searchDataFactory", function($scope, $http, searchDataFactory) {
+
+	$scope.songInfo = searchDataFactory.getSearchData();
+
+	console.log("$scope.songInfo", $scope.songInfo);
 
 }]);

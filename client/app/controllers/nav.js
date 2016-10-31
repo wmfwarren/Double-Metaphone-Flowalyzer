@@ -17,6 +17,7 @@ app.controller("NavCtrl", ["$scope", "$http", "searchDataFactory", function($sco
 		$http.post("/api/searchTrackFlows", {searchTerm: $scope.searchTerm})
 			.then((data) => {
 				searchDataFactory.setSearchData(data);
+				console.log("data", data);
 			})
 			.catch(console.error);
 	};
