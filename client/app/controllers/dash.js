@@ -22,12 +22,13 @@ app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
  		$http.get("/api/averageUniqueness")
  			.then((uniquenessData) => {
  				$scope.dashboardInfo = uniquenessData.data;
- 				console.log("$scope.dashboardInfo", $scope.dashboardInfo);
  			})
  	};	
 
- 	$scope.getFlowWeightedUniqueness = () => {
- 		$scope.metricSummary = "The longer a flow gets the less unique it will get by nature due to more words like articles and prepositions being reused. This is the uniqueness value times a fudge factor determined by length."
+ 	$scope.getWordLength = () => {
+ 		$scope.metricSummary = "A measure of the average length of multi-character words."
+ 		$scope.dataQuery = "wordLengths";
+ 		
  	};
 
 
