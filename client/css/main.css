@@ -4,5 +4,11 @@
 
 .dashText {
 	min-height: 25em;
- 	background-color: red;
+ 	/*background-color: red;*/
+ 	overflow:scroll;
+  overflow-x:hidden;
+}
+
+.descriptionText {
+	min-height: 6em;
 }
