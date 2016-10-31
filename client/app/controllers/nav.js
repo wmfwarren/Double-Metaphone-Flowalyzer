@@ -10,6 +10,15 @@ app.controller("NavCtrl", ["$scope", "$http", function($scope, $http) {
 				console.log("Data", data);
 			})
 			.catch(console.error);
-	}
+	};
+
+	$scope.searchTrack = () => {
+
+		$http.post("/api/searchTrackFlows", {searchTerm: $scope.searchTerm})
+			.then((data) => {
+				console.log("Data", data);
+			})
+			.catch(console.error);
+	};
 
 }]);
