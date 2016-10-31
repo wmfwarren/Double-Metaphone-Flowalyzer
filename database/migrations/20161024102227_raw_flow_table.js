@@ -7,6 +7,7 @@ module.exports.up = (knex, Promise) => {
         table.integer("length");
         table.integer("unique_words");
         table.float("average_word_length");
+        table.float("word_length_stdev");
     })
 };
 
