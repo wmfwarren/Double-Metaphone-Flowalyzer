@@ -4,13 +4,16 @@
 			<h2>The Flowalyzer's Best Wordsmiths</h2>
 		</div>
 	</div>
-	<div class="row ">
+	<div class="row">
 		<div class=" dashText col-md-6 col-md-offset-3">
-			<h4 >
-				{{dashboardInfo}}
+			<h4 ng-show="dataQuery === 'length'" ng-repeat="artist in dashboardInfo | orderBy: '-lengths'">
+				{{artist.rapper}}: Average Flow Length {{artist.lengths}}
+			</h4>
+			<h4 ng-show="dataQuery === 'unique'" ng-repeat="artist in dashboardInfo | orderBy: '-uniqueness'">
+				{{artist.rapper}}: Average Flow Uniqueness {{artist.uniqueness}}
 			</h4>
 		</div>
-	</div> <!-- end row for the text box -->
+	</div> <!-- end row for the text box for -->
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="btn-group">
