@@ -12,6 +12,7 @@ const bodyParser = require("body-parser");
 //My packages
 const encoderDMP = require("../lib/analysis/DMPencoder.js");
 const { getArtistId, getAlbumId, getTrackId, getFlowId } = require("./getFKeys.js");
+const wordStats = require("../lib/analysis/avgWordLength.js");
 
 // CONSTANT
 const port = process.env.PORT || 3000;
@@ -80,13 +81,15 @@ app.post("/api/newFlow", (req, res) => {
 	const rapper = req.body.rapper;
 	const track = req.body.track;
 
+	const stats = wordStats(flow);
 	//insert raw flow into flow table
 	knex("Raw")
 		.insert({
 							flow: flow, 
 							length: length, 
 							unique_words: require("../lib/analysis/uniqueWords.js")(flow),
-							average_word_length: require("../lib/analysis/avgWordLength.js")(flow)
+							average_word_length: stats.mean,
+							word_length_stdev: stats.stdev
 						})
 		.then((data) => {
 			res.json(data);
