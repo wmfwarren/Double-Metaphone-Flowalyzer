@@ -3,17 +3,19 @@
 		<div class="row text-centered">
 			<h2 class="col-md-10 col-md-offset-1">Raw and Metaphoned Flows for {{songInfo.data[0].title}}</h2>
 			<p class="col-md-10 col-md-offset-1">
-				On the left are all the English flows for this song that are in the database. On the right are the associated flows that have been encoded using an augmented form of Lawrence Phillip's Double Metaphone algorithm. In this encoding a capital vowel is the long form of that vowel. A <i>0</i> a short <i>a</i>/<i>o</i>/<i>u</i>, a <i>1</i> is a short <i>e</i>/<i>i</i>, and a <i>2</i> is a <i>th</i>.
+				On the left are all the English flows for this song that are in the database. On the right are the associated flows that have been encoded using an augmented form of Lawrence Phillip's Double Metaphone algorithm. In this encoding a capital vowel is the long form of that vowel. A <i>0</i> a short <i>a</i>/<i>o</i>/<i>u</i>, a <i>1</i> is a short <i>e</i>/<i>i</i>, and a <i>2</i> is a <i>th</i>. Below the flows are stats about each flow.
 			</p>
 		</div>
 		<div class="songContainer row" ng-repeat="flow in songInfo.data">
-			<div class="flowContainer col-md-6">
-				{{flow.raw}}
-			</div> <!-- end container for Raw flow -->
-			<div class="flowContainer col-md-6">
-				{{flow.dmp}}
-			</div> <!-- end container for DMP flow -->
-			<div class="row text-centered">
+			<div class="row">
+				<div class="flowContainer col-md-6">
+					{{flow.raw}}
+				</div> <!-- end container for Raw flow -->
+				<div class="flowContainer col-md-6">
+					{{flow.dmp}}
+				</div> <!-- end container for DMP flow -->
+			</div>
+			<div class="row">
 				<div class="flowContainer col-md-4 col-md-offset-4">
 					<p>
 						Flow length: {{flow.l}}
@@ -22,7 +24,7 @@
 						Unique words: {{flow.u}}
 					</p>
 					<p>
-						Uniqueness Quotient: {{(flow.u / flow.l).toFixed(2)}}
+						Uniqueness Quotient: {{flow.uniqueness.toFixed(2)}}
 					</p>
 					<p>
 						Average word length: {{flow.avg.toFixed(2)}}
