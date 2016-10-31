@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default" ng-controller="NavCtrl">
+  <div class="container">
+	  <div class="container-fluid col-md-5">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        <img alt="Flowalyzer" src="">
+	      </a>
+	    </div>
+	  </div> <!-- end logo -->
+	  <div class="col-md-6">
+		  <form class="navbar-form navbar-right" role="search">
+			  <div class="form-group">
+			    <input type="text" class="form-control" placeholder="Search">
+			  </div>
+			  <div class="form-group">
+			  	<label for="searchType">Search For:</label>
+			  	<input type="radio" name="searchType" class="form-control" value="Artist" checked="checked"> Artist
+			  	<input type="radio" name="searchType" class="form-control" value="Track"> Track
+			  </div>
+		  	<button type="submit" class="btn btn-default">Submit</button>
+			</form>	
+	  </div>
+	 </div> <!-- outer container -->
+</nav>

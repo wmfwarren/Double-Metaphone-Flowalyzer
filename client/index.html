@@ -8,6 +8,7 @@
   <body>
     <div ng-app="flowalyzer">
     	<div class="container">
+    		<div ng-include="'/app/partials/nav.html'"></div>
     		<div ng-view>
     			
     		</div>
@@ -24,6 +25,7 @@
     <script src="/app/app.js"></script>
 		<!-- Services -->
     <!-- Controllers -->
+    <script src="/app/controllers/nav.js"></script>
     <script src="/app/controllers/dash.js"></script>
 
   </body>
