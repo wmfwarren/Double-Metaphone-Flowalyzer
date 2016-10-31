@@ -6,23 +6,30 @@
 	</div>
 	<div class="row ">
 		<div class=" dashText col-md-6 col-md-offset-3">
-			<h4 ng-model="dashboardInfo">
-				
+			<h4 >
+				{{dashboardInfo}}
 			</h4>
 		</div>
 	</div> <!-- end row for the text box -->
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="btn-group">
-	  	  <button ng-click="" type="button" class="btn btn-default">Longest Flows</button>
-				<button ng-click="" type="button" class="btn btn-default">Uniqueness Quotients</button>
-				<button ng-click="" type="button" class="btn btn-default">Weighted Uniqueness</button>
+	  	  <button ng-click="getFlowLengths()" type="button" class="btn btn-default">Longest Flows</button>
+				<button ng-click="getFlowUniqueness()" type="button" class="btn btn-default">Uniqueness Quotients</button>
+				<button ng-click="getFlowWeightedUniqueness()" type="button" class="btn btn-default">Weighted Uniqueness</button>
 			</div> <!-- end button group -->
 		</div>
 	</div> <!-- end row for the data buttons -->
 	<div class="row">
-		<h4 ng-model="metricSummary">
-			
+		<h4 class="descriptionText col-md-6 col-md-offset-3">
+			{{metricSummary}}
 		</h4>
 	</div> <!-- end row for the description box -->
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<p>
+				At this time all number may be skewed the the selected flows for each artist.
+			</p>
+		</div>
+	</div>
 </div> <!-- end container -->
