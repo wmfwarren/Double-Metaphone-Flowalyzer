@@ -6,6 +6,7 @@ module.exports.up = (knex, Promise) => {
         table.string('flow', 4095);
         table.integer("length");
         table.integer("unique_words");
+        table.float("average_word_length");
     })
 };
 
