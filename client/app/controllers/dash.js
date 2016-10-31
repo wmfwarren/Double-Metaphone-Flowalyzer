@@ -32,7 +32,6 @@ app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
  		$http.get("/api/averageWordLengths")
  			.then((wordLengthData) => {
  				$scope.dashboardInfo = wordLengthData.data;
- 				console.log("$scope.dashboardInfo",$scope.dashboardInfo );
  			})
  	};
 
