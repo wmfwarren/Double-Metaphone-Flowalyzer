@@ -8,8 +8,8 @@ app.config(["$routeProvider", function($routeProvider) {
       controller: "DashCtrl",
       templateUrl: "/app/partials/dash.html"
     })
-    .when("/searchResults", {
-      controller: "SearchResultsCtrl",
+    .when("/songResults", {
+      controller: "SongResultsCtrl",
       templateUrl: "/app/partials/songResults.html"
     })
     .otherwise('/')
