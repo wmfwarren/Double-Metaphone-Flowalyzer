@@ -25,10 +25,15 @@ app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
  			})
  	};	
 
- 	$scope.getWordLength = () => {
- 		$scope.metricSummary = "A measure of the average length of multi-character words."
+ 	$scope.getAvgWordLength = () => {
+ 		$scope.metricSummary = "A measure of the average length of words. For further data search for an artists flows!"
  		$scope.dataQuery = "wordLengths";
- 		
+
+ 		$http.get("/api/averageWordLengths")
+ 			.then((wordLengthData) => {
+ 				$scope.dashboardInfo = wordLengthData.data;
+ 				console.log("$scope.dashboardInfo",$scope.dashboardInfo );
+ 			})
  	};
 
 
