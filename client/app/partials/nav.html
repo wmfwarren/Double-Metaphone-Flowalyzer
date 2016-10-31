@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default" ng-controller="NavCtrl">
+  <div class="container">
+	  <div class="container-fluid col-md-5">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        <img alt="Flowalyzer" src="">
+	      </a>
+	    </div>
+	  </div> <!-- end logo -->
+	  <div class="col-md-6">
+		  <div class="navbar-form navbar-right">
+			  <input ng-model="searchTerm" type="text" name="searchText" placeholder="Search Term">
+			  <div class="btn-group">
+		  	  <button ng-click="searchArtist()" type="button" class="btn btn-default">Artist</button>
+					<button ng-click="searchTrack()" type="button" class="btn btn-default">Track</button>
+			  </div>
+			</div>
+	  </div> <!-- search bar area -->
+	 </div> <!-- outer container -->
+</nav>

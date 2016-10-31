@@ -1,0 +1,14 @@
+.text-center {
+  text-align: center;
+}
+
+.dashText {
+	min-height: 25em;
+ 	/*background-color: red;*/
+ 	overflow:scroll;
+  overflow-x:hidden;
+}
+
+.descriptionText {
+	min-height: 6em;
+}

@@ -4,9 +4,17 @@
     <meta charset="utf-8">
     <title>Flowalyzer</title>
     <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
   </head>
   <body>
-    <h1>Test</h1>
+    <div ng-app="flowalyzer">
+    	<div class="container">
+    		<div ng-include="'/app/partials/nav.html'"></div>
+    		<div ng-view>
+    			
+    		</div>
+    	</div>
+    </div>
 
 
     <!-- Third party Libs -->
@@ -15,8 +23,11 @@
     <script src="/lib/angular/angular.min.js"></script>
     <script src="/lib/angular-route/angular-route.min.js"></script>
     <!-- App -->
-    <!-- Controllers -->
+    <script src="/app/app.js"></script>
 		<!-- Services -->
-    
+    <!-- Controllers -->
+    <script src="/app/controllers/nav.js"></script>
+    <script src="/app/controllers/dash.js"></script>
+
   </body>
 </html>
