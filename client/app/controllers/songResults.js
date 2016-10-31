@@ -1,5 +1,5 @@
 "use strict";
 
-app.controller("SearchResultsCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("SearchResultsCtrl", ["$scope", "$http", function($scope, $http, searchDataFactory) {
 
 }]);
