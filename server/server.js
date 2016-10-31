@@ -290,6 +290,11 @@ app.get("/api/averageUniqueness", (req, res) => {
 		});
 });
 
+app.get("/api/averageWordLengths", (req, res) => {
+
+	
+});
+
 //LISTENING on port...
 app.listen(port, () => {
 	console.log(`Listening on port ${port}`);
