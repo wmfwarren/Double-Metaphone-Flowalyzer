@@ -144,7 +144,7 @@ app.post("/api/searchTrackFlows", (req, res) => {
 	knex("Track")
 		.select("Track.title")
 		.select("Raw.flow as raw", "DMP.flow as dmp")
-		.select("Raw.length as l", "Raw.unique_words as u")
+		.select("Raw.length as l", "Raw.unique_words as u", "Raw.average_word_length as avg", "Raw.word_length_stdev as stdev", "Raw.word_percent_rsd as rsd")
 		.innerJoin("Flow", "Track.id", "Flow.track_id")
 		.innerJoin("Raw", "Flow.raw_flow_id", "Raw.id")
 		.innerJoin("DMP", "Raw.id", "DMP.id")
