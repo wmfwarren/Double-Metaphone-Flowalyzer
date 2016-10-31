@@ -25,7 +25,7 @@ app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
  			})
  	};	
 
- 	$scope.getWordLength = () => {
+ 	$scope.getAvgWordLength = () => {
  		$scope.metricSummary = "A measure of the average length of multi-character words."
  		$scope.dataQuery = "wordLengths";
 

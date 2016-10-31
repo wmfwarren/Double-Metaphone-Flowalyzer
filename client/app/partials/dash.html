@@ -13,7 +13,7 @@
 				{{artist.rapper}}: Average Flow Uniqueness {{artist.uniqueness}}
 			</h4>
 			<h4 ng-show="dataQuery === 'wordLengths'" ng-repeat="artist in dashboardInfo | orderBy: '-wordLengths'">
-				{{artist.rapper}}: Average Word Length {{artist.wordLengths}}
+				{{artist.rapper}}: Average Word Length {{artist.wordLengths.toFixed(2)}}
 			</h4>
 		</div>
 	</div> <!-- end row for the text box for -->
@@ -22,7 +22,7 @@
 			<div class="btn-group">
 	  	  <button ng-click="getFlowLengths()" type="button" class="btn btn-default">Longest Flows</button>
 				<button ng-click="getFlowUniqueness()" type="button" class="btn btn-default">Uniqueness Quotients</button>
-				<button ng-click="getFlowWeightedUniqueness()" type="button" class="btn btn-default">Mean Word Length</button>
+				<button ng-click="getAvgWordLength()" type="button" class="btn btn-default">Mean Word Length</button>
 			</div> <!-- end button group -->
 		</div>
 	</div> <!-- end row for the data buttons -->
