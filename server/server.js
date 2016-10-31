@@ -82,7 +82,12 @@ app.post("/api/newFlow", (req, res) => {
 
 	//insert raw flow into flow table
 	knex("Raw")
-		.insert({flow: flow, length: length, unique_words: require("../lib/analysis/uniqueWords.js")(flow)})
+		.insert({
+							flow: flow, 
+							length: length, 
+							unique_words: require("../lib/analysis/uniqueWords.js")(flow),
+							average_word_length: require("../lib/analysis/avgWordLength.js")(flow)
+						})
 		.then((data) => {
 			res.json(data);
 		});
@@ -292,7 +297,7 @@ app.get("/api/averageUniqueness", (req, res) => {
 
 app.get("/api/averageWordLengths", (req, res) => {
 
-	
+
 });
 
 //LISTENING on port...
