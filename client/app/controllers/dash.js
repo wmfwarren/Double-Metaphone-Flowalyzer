@@ -6,7 +6,7 @@ app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
  	$scope.dataQuery = null;
 
  	$scope.getFlowLengths = () => {
- 		$scope.metricSummary = "These are the three rappers with the longest flows."
+ 		$scope.metricSummary = "These are the three rappers with the longest flows. This is words per flow."
  		$scope.dataQuery = "length";
 
  		$http.get("/api/averageLengths")
@@ -16,7 +16,7 @@ app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
  	};	
 
  	$scope.getFlowUniqueness = () => {
- 		$scope.metricSummary = "These are the rappers with the most discrete words in their flows. This is calculated by dividing unique words by length."
+ 		$scope.metricSummary = "These are the rappers with the most discrete words in their flows. This is calculated by dividing unique words by the length of the flow."
  		$scope.dataQuery = "unique";
 
  		$http.get("/api/averageUniqueness")
