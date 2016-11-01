@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("DashCtrl", ["$scope", "$http", "$location", "searchDataFactory", function($scope, $http, $location, searchDataFactory) {
  	$scope.metricSummary = "Click a metric for more information.";
  	$scope.dashboardInfo = null;
  	$scope.dataQuery = null;
@@ -34,6 +34,17 @@ app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
  				$scope.dashboardInfo = wordLengthData.data;
  			})
  	};
+
+ 	$scope.searchArtist = (searchTerm) => {
+
+		$http.post("/api/searchArtistFlows", {searchTerm: searchTerm})
+			.then((data) => {
+				searchDataFactory.setSearchData(data);
+				console.log("data", data);
+				$location.path("/artistResults");
+			})
+			.catch(console.error);
+	};
 
 
 }]);
