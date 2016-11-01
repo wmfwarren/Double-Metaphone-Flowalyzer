@@ -207,17 +207,22 @@ app.get("/api/averageWordLengths", (req, res) => {
 							return {nameData, lengths: data.lengthsArray};
 						})
 						.then((arrays) => {
+							console.log("arrays", arrays );
 							const rapperLengthsArray = [];
-
 							for(let i = 0; i < arrays.nameData.length; i++){
 								let obj = {};
+									
+									obj.wordLengths = arrays.lengths[i];
 
-								obj.wordLengths = arrays.lengths[i];
+									if(arrays.nameData[i].length > 0  ){
+										obj.rapper = arrays.nameData[i][0].name;
+									}
+									
 
-								if( obj.lengths !== 0){
-									obj.rapper = arrays.nameData[i][0].name;
-									rapperLengthsArray.push(obj);
-								}
+									if(obj.wordLengths !== null){
+										rapperLengthsArray.push(obj);
+									}
+									
 							}
 							res.json(rapperLengthsArray);
 						});
