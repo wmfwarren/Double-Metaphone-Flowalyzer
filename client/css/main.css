@@ -15,7 +15,7 @@
 	max-height: 35em;
  	overflow-y: scroll;
   overflow-x: hidden;
-  margin: .5em 0;
+  margin: 0 .5em;
   border: 1px solid black;
 }
 
@@ -27,10 +27,19 @@
   border: 1px solid black;
 }
 
+.listStyles {
+	list-style-type: none;
+	margin-top: 1em;
+}
+
 .lyricPadding {
-	margin: 5px 0;
+	margin: 0 15px;
 }
 
 .descriptionText {
 	min-height: 6em;
+}
+
+.inline {
+	display: inline;
 }
