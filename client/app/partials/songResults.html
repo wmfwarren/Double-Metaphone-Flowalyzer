@@ -9,38 +9,40 @@
 				
 			</div>
 		</div>
-		<div class="songContainer row" ng-repeat="flow in songInfo.data">
-			<div class="row">
-				<div class="flowContainer col-md-6">
-					{{flow.raw}}
-				</div> <!-- end container for Raw flow -->
-				<div class="flowContainer col-md-6">
-					{{flow.dmp}}
-				</div> <!-- end container for DMP flow -->
-			</div>
-			<div class="row">
-				<div class="flowContainer col-lg-4 col-lg-offset-4">
-					<p>
-						Flow length: {{flow.l}}
-					</p>
-					<p>
-						Unique words: {{flow.u}}
-					</p>
-					<p>
-						Uniqueness quotient: {{flow.uniqueness.toFixed(2)}}
-					</p>
-					<p>
-						Average word length: {{flow.avg.toFixed(2)}}
-					</p>
-					<p>
-						Word length deviation: {{flow.stdev.toFixed(2)}}
-					</p>
-					<p>
-						Relative deviation: {{flow.rsd.toFixed(2)}}%
-					</p>
+		<div class="songContainer row" >
+			<div class="row lyricPadding" ng-repeat="flow in songInfo.data">
+				<div class="row">
+					<div class="flowContainer col-md-6">
+						{{flow.raw}}
+					</div> <!-- end container for Raw flow -->
+					<div class="flowContainer col-md-6">
+						{{flow.dmp}}
+					</div> <!-- end container for DMP flow -->
 				</div>
-			</div>
-		</div> <!-- end song container -->
+				<div class="row">
+					<div class="flowContainer col-lg-4 col-lg-offset-4">
+						<p>
+							Flow length: {{flow.l}}
+						</p>
+						<p>
+							Unique words: {{flow.u}}
+						</p>
+						<p>
+							Uniqueness quotient: {{flow.uniqueness.toFixed(2)}}
+						</p>
+						<p>
+							Average word length: {{flow.avg.toFixed(2)}}
+						</p>
+						<p>
+							Word length deviation: {{flow.stdev.toFixed(2)}}
+						</p>
+						<p>
+							Relative deviation: {{flow.rsd.toFixed(2)}}%
+						</p>
+					</div>
+				</div>
+			</div> 
+		</div>
 		<div class="row text-centered">
 			<h2>Stats Key</h2>
 			<p>

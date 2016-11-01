@@ -173,7 +173,6 @@ app.get("/api/averageWordLengths", (req, res) => {
 					.where("rapper_id", i)
 					.then((data) => {
 						let length = data[0].avg;
-						console.log("word length", length);
 						return length;
 					})
 				)

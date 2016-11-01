@@ -1,12 +1,12 @@
 "use strict";
 
-app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
- 	$scope.metricSummary = null;
+app.controller("DashCtrl", ["$scope", "$http", "$location", "searchDataFactory", function($scope, $http, $location, searchDataFactory) {
+ 	$scope.metricSummary = "Click a metric for more information.";
  	$scope.dashboardInfo = null;
  	$scope.dataQuery = null;
 
  	$scope.getFlowLengths = () => {
- 		$scope.metricSummary = "These are the three rappers with the longest flows."
+ 		$scope.metricSummary = "These are the three rappers with the longest flows. This is words per flow."
  		$scope.dataQuery = "length";
 
  		$http.get("/api/averageLengths")
@@ -16,7 +16,7 @@ app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
  	};	
 
  	$scope.getFlowUniqueness = () => {
- 		$scope.metricSummary = "These are the rappers with the most discrete words in their flows. This is calculated by dividing unique words by length."
+ 		$scope.metricSummary = "These are the rappers with the most discrete words in their flows. This is calculated by dividing unique words by the length of the flow."
  		$scope.dataQuery = "unique";
 
  		$http.get("/api/averageUniqueness")
@@ -34,6 +34,17 @@ app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
  				$scope.dashboardInfo = wordLengthData.data;
  			})
  	};
+
+ 	$scope.searchArtist = (searchTerm) => {
+
+		$http.post("/api/searchArtistFlows", {searchTerm: searchTerm})
+			.then((data) => {
+				searchDataFactory.setSearchData(data);
+				console.log("data", data);
+				$location.path("/artistResults");
+			})
+			.catch(console.error);
+	};
 
 
 }]);
