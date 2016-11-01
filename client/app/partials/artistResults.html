@@ -3,10 +3,12 @@
 		<div class="row text-centered">
 		<h2 class="col-md-10 col-md-offset-1">Track lists for {{artistInfo.data[0].name}}</h2>
 		</div>
-		<div class="trackContainer row">
-			<div class="row" ng-repeat="track in artistInfo.data | orderBy: title">
-				<h5><a href="" ng-click="searchTrack(track.title)" title="">{{track.title}}</a>	from the album <i>{{track.album}}</i></h5>
-			</div> <!--  close trackContainer -->
+		<div class="row">
+			<div class="trackContainer  col-md-6 col-md-offset-3">
+				<div class="row" ng-repeat="track in artistInfo.data | orderBy: title">
+					<h5><a href="" ng-click="searchTrack(track.title)" title="">{{track.title}}</a>	from the album <i>{{track.album}}</i></h5>
+				</div> <!--  close trackContainer -->
+			</div>
 		</div>
 	</div>
 </div>
