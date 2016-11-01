@@ -4,16 +4,16 @@
 
 .dashText {
 	min-height: 25em;
- 	/*background-color: red;*/
- 	overflow:scroll;
+	max-height: 25em;
+ 	overflow: scroll;
   overflow-x:hidden;
 }
 
-.flowContainer {
-	min-height: 15em;
- 	/*background-color: red;*/
- 	overflow:scroll;
-  overflow-x:hidden;
+.songContainer {
+	min-height: 20em;
+	max-height: 35em;
+ 	overflow: scroll;
+  overflow-x: hidden;
   margin: .5em 0;
 }
 
