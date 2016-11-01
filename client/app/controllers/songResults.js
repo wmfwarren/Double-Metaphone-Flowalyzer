@@ -4,8 +4,6 @@ app.controller("SongResultsCtrl", ["$scope", "$http", "searchDataFactory", funct
 
 	$scope.songInfo = searchDataFactory.getSearchData();
 
-	console.log("$scope.songInfo", $scope.songInfo.data);
-
 	//D3 Graph Work
 	const BAR_HEIGHT = 25;
 	const WIDTH = 400;
