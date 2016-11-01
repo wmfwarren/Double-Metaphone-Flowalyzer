@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("NavCtrl", ["$scope", "$http", "$location", "searchDataFactory", function($scope, $http, $location, searchDataFactory) {
+app.controller("NavCtrl", ["$scope", "$http", "$location", "$route", "searchDataFactory", function($scope, $http, $location, $route, searchDataFactory) {
 	$scope.searchTerm = null;
 
 	$scope.searchArtist = () => {
@@ -8,7 +8,11 @@ app.controller("NavCtrl", ["$scope", "$http", "$location", "searchDataFactory", 
 		$http.post("/api/searchArtistFlows", {searchTerm: $scope.searchTerm})
 			.then((data) => {
 				searchDataFactory.setSearchData(data);
-				$location.path("/artistResults");
+				if($location.path() === "/artistResults") {
+					$route.reload();
+				} else {
+					$location.path("/artistResults");
+				}
 			})
 			.catch(console.error);
 	};
@@ -18,7 +22,11 @@ app.controller("NavCtrl", ["$scope", "$http", "$location", "searchDataFactory", 
 		$http.post("/api/searchTrackFlows", {searchTerm: $scope.searchTerm})
 			.then((data) => {
 				searchDataFactory.setSearchData(data);
-				$location.path("/songResults");
+				if($location.path() === "/songResults") {
+					$route.reload();
+				} else {
+					$location.path("/songResults");
+				}
 			})
 			.catch(console.error);
 	};
