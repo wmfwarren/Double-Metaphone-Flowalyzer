@@ -13,7 +13,7 @@ app.config(["$routeProvider", function($routeProvider) {
       templateUrl: "/app/partials/songResults.html"
     })
     .when("/artistResults", {
-      controller: "ArtistResultsCtrl".
+      controller: "ArtistResultsCtrl",
       templateUrl: "/app/partials/artistResults.html"
     })
     .otherwise('/')

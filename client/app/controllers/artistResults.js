@@ -2,7 +2,6 @@
 
 app.controller("ArtistResultsCtrl", ["$scope", "$http", "searchDataFactory", function($scope, $http, searchDataFactory) {
 
-	$scope.songInfo = searchDataFactory.getSearchData();
-
+	$scope.artistInfo = searchDataFactory.getSearchData();
 
 }]);
