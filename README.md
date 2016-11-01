@@ -1,7 +1,5 @@
 # Flowalyzer Using Double Metaphone
 
-## Marshall Friskics-Warren
-
 ## The Algorithm
 The Metaphone Algorithm was developed by Lawrence Phillips to phonetically encode the way words sound with common letters. In the original algorithm, the words "Kline" and "Cline" result in the same code.
 
