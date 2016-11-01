@@ -4,16 +4,7 @@ app.controller("SongResultsCtrl", ["$scope", "$http", "$location", "searchDataFa
 
 	$scope.songInfo = searchDataFactory.getSearchData();
 
-	$scope.searchArtist = (searchTerm) => {
-
-		$http.post("/api/searchArtistFlows", {searchTerm: searchTerm})
-			.then((data) => {
-				searchDataFactory.setSearchData(data);
-				console.log("data", data);
-				$location.path("/artistResults");
-			})
-			.catch(console.error);
-	};
+	
 
 	//D3 Graph Work
 	// const BAR_HEIGHT = 25;
