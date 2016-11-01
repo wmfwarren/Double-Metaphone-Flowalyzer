@@ -127,10 +127,11 @@ app.post("/api/searchArtistFlows", (req, res) => {
 	const artistName = req.body.searchTerm;
 
 	knex("Artist")
-		.distinct("Artist.id", "Artist.name", "Track.title")
+		.distinct("Artist.id", "Artist.name", "Track.title", "Album.title as album")
 		.select()
 		.innerJoin("Flow", "Artist.id", "Flow.rapper_id")
 		.innerJoin("Track", "Flow.track_id", "Track.id")
+		.innerJoin("Album", "Track.album_id", "Album.id")
 		.where("Artist.name", artistName)
 		.then((data) => {
 			res.json(data);
