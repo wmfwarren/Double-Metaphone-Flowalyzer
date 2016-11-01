@@ -1,0 +1,51 @@
+<div class="row text-centered">
+	<div class="col-md-12 text-center">
+		<div class="row text-centered">
+			<h2 class="col-md-10 col-md-offset-1">Raw and Metaphoned Flows for {{songInfo.data[0].title}}</h2>
+			<p class="col-md-10 col-md-offset-1">
+				On the left are all the English flows for this song that are in the database. On the right are the associated flows that have been encoded using an augmented form of Lawrence Phillip's <a target="_blank" href="https://en.wikipedia.org/wiki/Metaphone" title="">Double Metaphone algorithm</a>. In this encoding a capital vowel is the long form of that vowel. A <i>0</i> a short <i>a</i>/<i>o</i>/<i>u</i>, a <i>1</i> is a short <i>e</i>/<i>i</i>, and a <i>2</i> is a <i>th</i>. Below the flows are stats about each flow.
+			</p>
+			<div id="flowDataGraph">
+				
+			</div>
+		</div>
+		<div class="songContainer row" ng-repeat="flow in songInfo.data">
+			<div class="row">
+				<div class="flowContainer col-md-6">
+					{{flow.raw}}
+				</div> <!-- end container for Raw flow -->
+				<div class="flowContainer col-md-6">
+					{{flow.dmp}}
+				</div> <!-- end container for DMP flow -->
+			</div>
+			<div class="row">
+				<div class="flowContainer col-lg-4 col-lg-offset-4">
+					<p>
+						Flow length: {{flow.l}}
+					</p>
+					<p>
+						Unique words: {{flow.u}}
+					</p>
+					<p>
+						Uniqueness quotient: {{flow.uniqueness.toFixed(2)}}
+					</p>
+					<p>
+						Average word length: {{flow.avg.toFixed(2)}}
+					</p>
+					<p>
+						Word length deviation: {{flow.stdev.toFixed(2)}}
+					</p>
+					<p>
+						Relative deviation: {{flow.rsd.toFixed(2)}}%
+					</p>
+				</div>
+			</div>
+		</div> <!-- end song container -->
+		<div class="row text-centered">
+			<h2>Stats Key</h2>
+			<p>
+				<i>Flow length</i> is the number of words in a flow. <i>Unique words</i> is the number of non-repeated words. <i>Uniqueness</i> is the unique words divided by the flow's length. <i>Average word length</i> is the average number of characters in the flow's words. <i>Word length deviation</i> is a measure of the range of variance in length of words. <i>Relative deviation</i> is divination divided by the average word length.
+			</p>
+		</div>
+	</div>
+</div> <!-- end container div -->

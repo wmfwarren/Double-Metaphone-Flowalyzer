@@ -9,6 +9,14 @@
   overflow-x:hidden;
 }
 
+.flowContainer {
+	min-height: 15em;
+ 	/*background-color: red;*/
+ 	overflow:scroll;
+  overflow-x:hidden;
+  margin: .5em 0;
+}
+
 .descriptionText {
 	min-height: 6em;
 }

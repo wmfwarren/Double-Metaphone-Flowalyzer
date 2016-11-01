@@ -1,13 +1,13 @@
 "use strict";
 
-app.controller("NavCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("NavCtrl", ["$scope", "$http", "searchDataFactory", function($scope, $http, searchDataFactory) {
 	$scope.searchTerm = null;
 
 	$scope.searchArtist = () => {
 
 		$http.post("/api/searchArtistFlows", {searchTerm: $scope.searchTerm})
 			.then((data) => {
-				console.log("Data", data);
+				searchDataFactory.setSearchData(data);
 			})
 			.catch(console.error);
 	};
@@ -16,7 +16,7 @@ app.controller("NavCtrl", ["$scope", "$http", function($scope, $http) {
 
 		$http.post("/api/searchTrackFlows", {searchTerm: $scope.searchTerm})
 			.then((data) => {
-				console.log("Data", data);
+				searchDataFactory.setSearchData(data);
 			})
 			.catch(console.error);
 	};
