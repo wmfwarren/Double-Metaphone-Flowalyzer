@@ -27,6 +27,10 @@
   border: 1px solid black;
 }
 
+.lyricPadding {
+	margin: 5px 0;
+}
+
 .descriptionText {
 	min-height: 6em;
 }
