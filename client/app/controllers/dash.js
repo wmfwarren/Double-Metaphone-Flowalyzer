@@ -1,7 +1,7 @@
 "use strict";
 
 app.controller("DashCtrl", ["$scope", "$http", function($scope, $http) {
- 	$scope.metricSummary = null;
+ 	$scope.metricSummary = "Click a metric for more information.";
  	$scope.dashboardInfo = null;
  	$scope.dataQuery = null;
 
