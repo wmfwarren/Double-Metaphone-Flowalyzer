@@ -76,6 +76,10 @@ body {
 	min-height: 6em;
 }
 
+.logoColor {
+	color: #E8E8ED;
+}
+
 .mainTitle {
 	font-family: 'Raleway', sans-serif;
 }
