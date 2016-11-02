@@ -207,7 +207,6 @@ app.get("/api/averageWordLengths", (req, res) => {
 							return {nameData, lengths: data.lengthsArray};
 						})
 						.then((arrays) => {
-							console.log("arrays", arrays );
 							const rapperLengthsArray = [];
 							for(let i = 0; i < arrays.nameData.length; i++){
 								let obj = {};
