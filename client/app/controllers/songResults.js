@@ -16,25 +16,21 @@ app.controller("SongResultsCtrl", ["$scope", "$http", "$location", "searchDataFa
 	$scope.wordData = [];
 	$scope.wordSeries = ["One StDev", "Mean", "Negative One StDev"];
 
-	console.log("songInfo", $scope.songInfo );
-
 	for(let i = 0; i < $scope.songInfo.data.length; i++) {
 		$scope.lengths.push($scope.songInfo.data[i].l);
 		$scope.uniqeness.push($scope.songInfo.data[i].u);
 		$scope.flowLabels.push(`Flow ${i + 1}`);
 
-		$scope.upperWordDev.push($scope.songInfo.data[i].avg + $scope.songInfo.data[i].stdev);
-		$scope.meanWord.push($scope.songInfo.data[i].avg);
-		$scope.lowerWordDev.push($scope.songInfo.data[i].avg - $scope.songInfo.data[i].stdev);
+		$scope.upperWordDev.push(parseFloat(($scope.songInfo.data[i].avg + $scope.songInfo.data[i].stdev).toFixed(2)));
+		$scope.meanWord.push(parseFloat(($scope.songInfo.data[i].avg).toFixed(2)));
+		$scope.lowerWordDev.push(parseFloat(($scope.songInfo.data[i].avg - $scope.songInfo.data[i].stdev).toFixed(2)));
 	}
+	
 	$scope.LUdata.push($scope.lengths);
 	$scope.LUdata.push($scope.uniqeness);
 
 	$scope.wordData.push($scope.upperWordDev);
 	$scope.wordData.push($scope.meanWord);
 	$scope.wordData.push($scope.lowerWordDev);
-
-	console.log("data", $scope.wordData);
-
 
 }]);
