@@ -4,6 +4,8 @@ app.controller("SongResultsCtrl", ["$scope", "$http", "$location", "searchDataFa
 
 	$scope.songInfo = searchDataFactory.getSearchData();
 	
+	$scope.colors = ["#557AD1" , "#2B2249", "#FC5D5D"];
+
 	$scope.lengths = [];
 	$scope.uniqeness = [];
 	$scope.flowLabels = [];
@@ -25,7 +27,7 @@ app.controller("SongResultsCtrl", ["$scope", "$http", "$location", "searchDataFa
 		$scope.meanWord.push(parseFloat(($scope.songInfo.data[i].avg).toFixed(2)));
 		$scope.lowerWordDev.push(parseFloat(($scope.songInfo.data[i].avg - $scope.songInfo.data[i].stdev).toFixed(2)));
 	}
-	
+
 	$scope.LUdata.push($scope.lengths);
 	$scope.LUdata.push($scope.uniqeness);
 
