@@ -1,6 +1,6 @@
 "use strict";
 
-const app = angular.module("flowalyzer", ["ngRoute"]);
+const app = angular.module("flowalyzer", ["ngRoute", "chart.js"]);
 
 app.config(["$routeProvider", function($routeProvider) {
   $routeProvider

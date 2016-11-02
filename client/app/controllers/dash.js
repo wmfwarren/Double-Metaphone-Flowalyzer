@@ -51,7 +51,6 @@ app.controller("DashCtrl", ["$scope", "$http", "$location", "searchDataFactory",
 		$http.post("/api/searchArtistFlows", {searchTerm: searchTerm})
 			.then((data) => {
 				searchDataFactory.setSearchData(data);
-				console.log("data", data);
 				$location.path("/artistResults");
 			})
 			.catch(console.error);
