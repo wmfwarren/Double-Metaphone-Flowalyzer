@@ -1,3 +1,16 @@
+body {
+	background-color: #D0CEDB;
+}
+
+.navbar-default {
+	background-color: #2B2249;
+}
+
+.btn-color {
+	background-color: #7E7891;
+	color: #E8E8ED;
+}
+
 .text-center {
   text-align: center;
 }
@@ -8,6 +21,8 @@
  	overflow-y: scroll;
   overflow-x: hidden;
   border: 1px solid black;
+  background-color: #E8E8ED;
+  font-family: 'Pavanam', sans-serif;
 }
 
 .songContainer {
@@ -17,6 +32,8 @@
   overflow-x: hidden;
   margin: 0 .5em;
   border: 1px solid black;
+  background-color: #E8E8ED;
+
 }
 
 .trackContainer {
@@ -25,6 +42,8 @@
 	overflow-y: scroll;
   overflow-x: hidden;
   border: 1px solid black;
+  background-color: #E8E8ED;
+  font-family: 'Pavanam', sans-serif;
 }
 
 .listStyles {
@@ -32,12 +51,33 @@
 	margin-top: 1em;
 }
 
+.pavanam {
+	font-family: 'Pavanam', sans-serif;
+}
+
+.raleway {
+	font-family: 'Raleway', sans-serif;
+}
+
+.openSans {
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
 .lyricPadding {
 	margin: 0 15px;
 }
 
+.flowContainer {
+	text-align: justify;
+	font-family: 'Pavanam', sans-serif;
+}
+
 .descriptionText {
 	min-height: 6em;
+}
+
+.mainTitle {
+	font-family: 'Raleway', sans-serif;
 }
 
 .inline {

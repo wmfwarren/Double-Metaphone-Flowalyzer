@@ -1,11 +1,14 @@
 <div class="container text-center">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<h2>The Flowalyzer's Best Wordsmiths</h2>
+			<h2 class="mainTitle">WORDSMITHS</h2>
 		</div>
 	</div>
 	<div class="row">
 		<div class="dashText col-md-6 col-md-offset-3">
+			<h4 ng-show="dataQuery === 'default'" ng-repeat="artist in dashboardInfo | orderBy: 'rapper'">
+				<a href="" ng-click="searchArtist(artist.rapper)">{{artist.rapper}}</a>
+			</h4>
 			<h4 ng-show="dataQuery === 'length'" ng-repeat="artist in dashboardInfo | orderBy: '-lengths'">
 				<a href="" ng-click="searchArtist(artist.rapper)">{{artist.rapper}}</a>: Average Flow Length {{artist.lengths}}
 			</h4>
@@ -19,21 +22,21 @@
 	</div> <!-- end row for the text box for -->
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<div class="btn-group">
-	  	  <button ng-click="getFlowLengths()" type="button" class="btn btn-default">Longest Flows</button>
-				<button ng-click="getFlowUniqueness()" type="button" class="btn btn-default">Uniqueness Quotients</button>
-				<button ng-click="getAvgWordLength()" type="button" class="btn btn-default">Mean Word Length</button>
+			<div class="btn-group openSans">
+	  	  <button ng-click="getFlowLengths()" type="button" class="btn-color btn btn-default">FLOW LENGTH</button>
+				<button ng-click="getFlowUniqueness()" type="button" class="btn-color btn btn-default">UNIQUENESS</button>
+				<button ng-click="getAvgWordLength()" type="button" class="btn-color btn btn-default">WORD LENGTH</button>
 			</div> <!-- end button group -->
 		</div>
 	</div> <!-- end row for the data buttons -->
 	<div class="row">
-		<h4 class="descriptionText col-md-6 col-md-offset-3">
+		<h4 class="descriptionText pavanam col-md-6 col-md-offset-3">
 			{{metricSummary}}
 		</h4>
 	</div> <!-- end row for the description box -->
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<p>
+			<p class="openSans">
 				This app analyzes a selection of flows from different rappers. A <i>flow</i> is to rap what a verse is to rock or country. It is a discrete segment to rhyme that is not usually repeated the way that a chorus or hook is. The ability to have a dope flow is paramount for a rapper to show off their command of language.
 			</p>
 		</div>
