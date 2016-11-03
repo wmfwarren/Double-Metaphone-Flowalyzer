@@ -16,6 +16,10 @@ app.config(["$routeProvider", function($routeProvider) {
       controller: "ArtistResultsCtrl",
       templateUrl: "/app/partials/artistResults.html"
     })
+    .when("/input", {
+      controller: "SongInputCtrl",
+      templateUrl: "/app/partials/songInput.html"
+    })
     .otherwise('/')
 }]);
 
