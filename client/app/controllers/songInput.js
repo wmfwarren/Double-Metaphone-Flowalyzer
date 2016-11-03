@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("SongInputCtrl", ["$scope", "$http", "$location", "searchDataFactory", function($scope, $http, $location, searchDataFactory) {
+app.controller("SongInputCtrl", ["$scope", "$http", "$route", "searchDataFactory", function($scope, $http, $route, searchDataFactory) {
 
 	$scope.flowText = "";
 	$scope.track = "";
