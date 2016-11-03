@@ -15,7 +15,12 @@ The primary goal of this project is to analyze some of the quantifiable data sur
 + Length of words in flows
 + Phonetic versions of flows
 
-The long term goal of this project to to use the Metaphone Algorithm to see how dense rhyming syllables are in different flows. Other goals include working to create a more comprehensive analysis of rapper's vocabulary, and to identify their most used words and phrases. 
+The long term goal of this project to to use the Metaphone Algorithm to see how dense rhyming syllables are in different flows. As well as:
+
++ Line length
++ Trends in the quantities by decade
++ Vocabulary
++ Correlations between existing measured quantities
 
 ## Technologies Used
 + NodeJS
