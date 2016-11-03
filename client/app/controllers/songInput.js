@@ -70,9 +70,10 @@ app.controller("SongInputCtrl", ["$scope", "$http", "$location", "searchDataFact
 							})
 					}
 
-					$http.post("/api/newFlow", {flow: $scope.flowText})
+					$http.post("/api/newFlow", {flow: $scope.flowText, track: $scope.track, rapper: $scope.rapper})
 						.then((data) => {
 							console.log("flowExists", data );
+							$route.reload();
 						})
 
 				});
