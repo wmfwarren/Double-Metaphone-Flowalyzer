@@ -159,6 +159,36 @@ app.post("/api/searchTrackFlows", (req, res) => {
 
 //GETs
 
+app.post("/api/findArtist", (req, res) => {
+	const artistName = req.body.artist;
+
+	knex("Artist")
+		.where("name", artistName)
+		.then((data) => {
+			res.json(data);
+		});
+});
+
+app.post("/api/findTrack", (req, res) => {
+	const trackName = req.body.track;
+
+	knex("Track")
+		.where("title", trackName)
+		.then((data) => {
+			res.json(data);
+		});
+});
+
+app.post("/api/findAlbum", (req, res) => {
+	const albumName = req.body.album;
+
+	knex("Album")
+		.where("title", albumName)
+		.then((data) => {
+			res.json(data);
+		});
+});
+
 app.get("/api/averageWordLengths", (req, res) => {
 	knex("Artist")
 		.max("id")
