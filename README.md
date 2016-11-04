@@ -19,6 +19,7 @@ The long term goal of this project to to use the Metaphone Algorithm to see how 
 
 + Line length and related statistics
 + Median, mode, and skew for word and line lengths
++ Find a fudge factor to account for trends in uniqueness caused by flow length
 + Trends in the quantities by decade
 + Vocabulary
 + Correlations between existing measured quantities
