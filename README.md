@@ -18,6 +18,7 @@ The primary goal of this project is to analyze some of the quantifiable data sur
 The long term goal of this project to to use the Metaphone Algorithm to see how dense rhyming syllables are in different flows. As well as:
 
 + Line length
++ Skews in word length and line length
 + Trends in the quantities by decade
 + Vocabulary
 + Correlations between existing measured quantities
