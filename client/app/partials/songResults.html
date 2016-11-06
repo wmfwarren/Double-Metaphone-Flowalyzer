@@ -38,19 +38,41 @@
 					</div> <!-- end container for DMP flow -->
 				</div>
 				<div class="row">
-					<div class=" col-lg-12">
+					<div class=" col-lg-12 pavanam">
 						<div class="col-md-6">
+							<h5>Word Stats</h5>
+						</div>
+						<div class="col-md-6 pavanam">
+							<h5>Line Stats</h5>
+						</div>
+						<div class="col-md-3">
 							<ul class="listStyles pavanam">
 								<li><b>Flow length:</b> {{flow.l}}</li>
 								<li><b>Unique words:</b> {{flow.u}}</li>
 								<li><b>Uniqueness quotient:</b> {{flow.uniqueness.toFixed(2)}}</li>
 							</ul>
 						</div>
-						<div class="col-md-6 pavanam">
+						<div class="col-md-3 pavanam">
 							<ul class="listStyles">
 								<li><b>Average word length:</b> {{flow.avg.toFixed(2)}}</li>
+								<li><b>Median word length:</b> {{flow.median.toFixed(2)}}</li>
+								<li><b>Mode word length:</b> {{flow.mode}}</li>
 								<li><b>Word length deviation:</b> {{flow.stdev.toFixed(2)}}</li>
 								<li><b>Relative deviation:</b> {{flow.rsd.toFixed(2)}}%</li>
+							</ul>
+						</div>
+						<div class="col-md-3 pavanam">
+							<ul class="listStyles">
+								<li><b>Total lines:</b> {{flow.totalLines}}</li>
+								<li><b>Average line length:</b> {{flow.lineMean.toFixed(2)}}</li>
+								<li><b>Line length deviation:</b> {{flow.lineStdev.toFixed(2)}}</li>
+							</ul>
+						</div>
+						<div class="col-md-3 pavanam">
+							<ul class="listStyles">
+								<li><b>Median line length:</b> {{flow.lineMedian.toFixed(2)}}</li>
+								<li><b>Mode line length:</b> {{flow.lineMode.toFixed(2)}}</li>
+								<li><b>Relative deviation:</b> {{(flow.lineStdev / flow.lineMean * 100).toFixed(2)}}%</li>
 							</ul>
 						</div>
 					</div>
@@ -68,7 +90,7 @@
 			</div>
 			<div class="col-md-6">
 				<ul class="listStyles">
-					<li><b>Average word length</b> is the average number of characters in the flow's words.</li>
+					<li><a href="http://www.wolframalpha.com/input/?i=average+english+word+length" target="_blank"><b>Average word length</b></a> is the average number of characters in the flow's words.</li>
 					<li><b>Word length deviation</b> is a measure of the range of variance in length of words.</li>
 					<li><b>Relative deviation</b> is deviation divided by the average word length.</li>
 				</ul>

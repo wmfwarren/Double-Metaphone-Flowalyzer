@@ -76,21 +76,28 @@ app.post("/api/newTrack", (req, res) => {
 ///// post new flow
 app.post("/api/newFlow", (req, res) => {
 	const flow = req.body.flow;
-	const length = flow.split(' ').length;
 
 	const rapper = req.body.rapper;
 	const track = req.body.track;
 
 	const stats = wordStats(flow);
+	console.log("stats", stats);
 	//insert raw flow into flow table
 	knex("Raw")
 		.insert({
 							flow: flow, 
-							length: length, 
+							length: stats.length, 
 							unique_words: require("../lib/analysis/uniqueWords.js")(flow),
 							average_word_length: stats.mean,
 							word_length_stdev: stats.stdev,
-							word_percent_rsd: stats.rsd
+							word_percent_rsd: stats.rsd,
+							mode_word_length: stats.mode,
+							median_word_length: stats.median,
+							number_of_lines: stats.lines,
+							mean_words_by_line: stats.lineMean,
+							mode_words_by_line: stats.lineMode,
+							median_words_by_line: stats.lineMedian,
+							stdev_words_by_line: stats.lineStdev
 						})
 		.then((data) => {
 			res.json(data);
@@ -145,6 +152,8 @@ app.post("/api/searchTrackFlows", (req, res) => {
 		.select("Track.title")
 		.select("Raw.flow as raw", "DMP.flow as dmp")
 		.select("Raw.length as l", "Raw.unique_words as u", "Raw.average_word_length as avg", "Raw.word_length_stdev as stdev", "Raw.word_percent_rsd as rsd")
+		.select("Raw.mode_word_length as mode", "Raw.median_word_length as median")
+		.select("Raw.number_of_lines as totalLines", "Raw.mean_words_by_line as lineMean", "Raw.mode_words_by_line as lineMode", "Raw.median_words_by_line as lineMedian", "Raw.stdev_words_by_line as lineStdev")
 		.innerJoin("Flow", "Track.id", "Flow.track_id")
 		.innerJoin("Raw", "Flow.raw_flow_id", "Raw.id")
 		.innerJoin("DMP", "Raw.id", "DMP.id")
