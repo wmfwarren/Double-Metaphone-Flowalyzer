@@ -152,6 +152,8 @@ app.post("/api/searchTrackFlows", (req, res) => {
 		.select("Track.title")
 		.select("Raw.flow as raw", "DMP.flow as dmp")
 		.select("Raw.length as l", "Raw.unique_words as u", "Raw.average_word_length as avg", "Raw.word_length_stdev as stdev", "Raw.word_percent_rsd as rsd")
+		.select("Raw.mode_word_length as mode", "Raw.median_word_length as median")
+		.select("Raw.number_of_lines as totalLines", "Raw.mean_words_by_line as lineMean", "Raw.mode_words_by_line as lineMode", "Raw.median_words_by_line as lineMedian", "Raw.stdev_words_by_line as lineStdev")
 		.innerJoin("Flow", "Track.id", "Flow.track_id")
 		.innerJoin("Raw", "Flow.raw_flow_id", "Raw.id")
 		.innerJoin("DMP", "Raw.id", "DMP.id")
