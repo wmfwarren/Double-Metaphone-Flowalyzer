@@ -10,7 +10,7 @@ module.exports.up = (knex, Promise) => {
         table.float("word_length_stdev");
         table.float("word_percent_rsd");
         table.integer("mode_word_length");
-        table.integer("median_word_length");
+        table.float("median_word_length");
     })
 };
 
