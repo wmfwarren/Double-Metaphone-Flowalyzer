@@ -10,12 +10,19 @@ The source code for the Double Metaphone JavaScript implementation used is take 
 ## The Goal
 The primary goal of this project is to analyze some of the quantifiable data surrounding flows for a selection of rappers. Some of the quantities that the app looks at are: 
 
-+Length of flows
-+Unique words in flows
-+Length of words in flows
-+Phonetic versions of flows
++ Length of flows
++ Unique words in flows
++ Length of words in flows
++ Phonetic versions of flows
 
-The long term goal of this project to to use the Metaphone Algorithm to see how dense rhyming syllables are in different flows. Other goals include working to create a more comprehensive analysis of rapper's vocabulary, and to identify their most used words and phrases. 
+The long term goal of this project to to use the Metaphone Algorithm to see how dense rhyming syllables are in different flows. As well as:
+
++ Line length and related statistics
++ Median, mode, and skew for word and line lengths
++ Find a fudge factor to account for trends in uniqueness caused by flow length
++ Trends in the quantities by decade
++ Vocabulary
++ Correlations between existing measured quantities
 
 ## Technologies Used
 + NodeJS
