@@ -76,7 +76,6 @@ app.post("/api/newTrack", (req, res) => {
 ///// post new flow
 app.post("/api/newFlow", (req, res) => {
 	const flow = req.body.flow;
-	const length = flow.replace(/\n/g, ' ').split(' ').length;
 
 	const rapper = req.body.rapper;
 	const track = req.body.track;
@@ -87,7 +86,7 @@ app.post("/api/newFlow", (req, res) => {
 	knex("Raw")
 		.insert({
 							flow: flow, 
-							length: length, 
+							length: stats.length, 
 							unique_words: require("../lib/analysis/uniqueWords.js")(flow),
 							average_word_length: stats.mean,
 							word_length_stdev: stats.stdev,
