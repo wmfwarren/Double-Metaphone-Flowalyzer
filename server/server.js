@@ -93,7 +93,9 @@ app.post("/api/newFlow", (req, res) => {
 							word_length_stdev: stats.stdev,
 							word_percent_rsd: stats.rsd,
 							mode_word_length: stats.mode,
-							median_word_length: stats.median
+							median_word_length: stats.median,
+							number_of_lines: stats.lines,
+							mean_words_by_line: stats.wordsByLine
 						})
 		.then((data) => {
 			res.json(data);
