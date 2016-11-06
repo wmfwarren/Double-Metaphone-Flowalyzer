@@ -76,12 +76,13 @@ app.post("/api/newTrack", (req, res) => {
 ///// post new flow
 app.post("/api/newFlow", (req, res) => {
 	const flow = req.body.flow;
-	const length = flow.split(' ').length;
+	const length = flow.replace(/\n/g, ' ').split(' ').length;
 
 	const rapper = req.body.rapper;
 	const track = req.body.track;
 
 	const stats = wordStats(flow);
+	console.log("stats", stats);
 	//insert raw flow into flow table
 	knex("Raw")
 		.insert({
