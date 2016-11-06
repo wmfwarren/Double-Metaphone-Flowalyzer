@@ -11,6 +11,8 @@ module.exports.up = (knex, Promise) => {
         table.float("word_percent_rsd");
         table.integer("mode_word_length");
         table.float("median_word_length");
+        table.integer("number_of_lines");
+        table.float("mean_words_by_line");
     })
 };
 
