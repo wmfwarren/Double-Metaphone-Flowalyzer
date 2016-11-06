@@ -3,7 +3,7 @@
 app.controller("SongResultsCtrl", ["$scope", "$http", "$location", "searchDataFactory", function($scope, $http, $location, searchDataFactory) {
 
 	$scope.songInfo = searchDataFactory.getSearchData();
-	
+	console.log("$scope.songInfo", $scope.songInfo);
 	$scope.colors = ["#557AD1" , "#2B2249", "#FC5D5D"];
 
 	$scope.lengths = [];
