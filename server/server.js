@@ -90,7 +90,9 @@ app.post("/api/newFlow", (req, res) => {
 							unique_words: require("../lib/analysis/uniqueWords.js")(flow),
 							average_word_length: stats.mean,
 							word_length_stdev: stats.stdev,
-							word_percent_rsd: stats.rsd
+							word_percent_rsd: stats.rsd,
+							mode_word_length: stats.mode,
+							median_word_length: stats.median
 						})
 		.then((data) => {
 			res.json(data);
